@@ -14,7 +14,6 @@
 			<select id='country' onclick="changeBus(this)" onchange="changeBus(this)">
 				<option value=''>---Select---</option>
 	<?php
-	var_dump($options);
 	foreach( $options as $currency => $account ){
 			if ($account){
 	?>
