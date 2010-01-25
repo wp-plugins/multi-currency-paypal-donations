@@ -1,24 +1,24 @@
 .mcpdtotalbox{
-font-size: 15px;
-padding: 0px 10px 0px 10px;
-line-height: 40px;
+	font-size: 15px;
+	padding: 0px 10px 0px 10px;
+	line-height: 40px;
 }
 
 
 .mcpdsubtotal{
-font-size: 15px;
-padding: 0px 10px 0px 10px;
-border-bottom: 1px dotted #bbb;
+	font-size: 15px;
+	padding: 0px 10px 0px 10px;
+	border-bottom: 1px dotted #bbb;
 }
 
 .mcpdstep2{
-border: 1px solid #444;
-padding:10px;
-margin-top:5px;
+	border: 1px solid #444;
+	padding:10px;
+	margin-top:5px;
 }
 
 .mcpdstep2 h3.top{
-	margin-top: 0px;	
+	margin-top: 0px;
 }
 
 .mcpdstep2 h2.top{
@@ -32,11 +32,17 @@ margin-top:5px;
 }
 
 .mcpdcontent{
-width: 390px;
+	width: 390px;
 }
 
 .mcpdcontent form{
-text-align: left;
+	text-align: left;
+	background: none;
+	padding: 0px;
+}
+
+.mcpdcontent form h3{
+	margin:0px;
 }
 
 .mcpdleftcol{
@@ -56,13 +62,14 @@ text-align: left;
 
 .mcpddonatenow{
 	border: none;
-	background-image: url('../../../plugins/multi-currency-donations/donate-button.png');
+	background-image: url('../../../plugins/multi-currency-paypal-donations/donate-button.png');
 	font-weight: 900;
 	font-size: 30px;
 	margin-left: 10px;
 	font-family: Georgia, _serif;
 	width: 220px;
 	height: 65px;
+	color: #000;
 }
 
 .mcpddonatenow:hover{
