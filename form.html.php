@@ -1,12 +1,20 @@
-<?php require_once(ABSPATH.'wp-content/plugins/multi-currency-donations/js/mcpdjs.php'); ?>
-<link rel="stylesheet" href="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-donations/style/style.css" media="screen" type='text/css' />
+<?php 
+	$table_name 	= $wpdb->prefix . "mcpd_currency";
+	$options 		= get_option('mcpd-accounts');
+	$contactlink	= get_option('mcpd-contactlink');
+	$update			= get_option('mcpd-update');
+	require_once(MCPD_JS.'/mcpdjs.php'); 
+?>
+<link rel="stylesheet" href="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-paypal-donations/style/style.css" media="screen" type='text/css' />
 
 <div class='mcpdcontent'>
 			
-			<p class='nationality'><span style='color:red'>*</span>Select your Currency:
+	<div class='mcpdstep2'>
+			<div class='nationality'><span style='color:red'>*</span>Select your Currency:
 			<select id='country' onclick="changeBus(this)" onchange="changeBus(this)">
 				<option value=''>---Select---</option>
 	<?php
+	var_dump($options);
 	foreach( $options as $currency => $account ){
 			if ($account){
 	?>
@@ -17,12 +25,11 @@
 		}
 	?>
 			</select>
-		</p>
-	<div class='mcpdstep2'>
+		</div>
 		<div class='mcpdleftcol'>
 			<div id='mcpdmonthly'>
-				<h3 class='top'>Monthly Donation</h3>
 				<form name='amounts'>
+					<h3 class='top'>Monthly Donation</h3>
 					<input name='selmonthly' type="checkbox" <?php if($monthlycheck == 'on') echo 'checked'; ?> onclick='createButton()' />
 					<span id='currsymbol1'>$</span><input type='input' size="6" name='monthlyamt' value='<?php echo $monthlydefault ?>' onkeyup='createButton()' style='padding:5px;font-size:20px;font-weight:900;' />
 					<span id='currencyMon'></span><span class='permonth'>/month</span>

@@ -28,8 +28,12 @@ add_action('admin_init', 'mcpd_init' );
 register_activation_hook(__FILE__,'mcpd_install');
 add_action('admin_menu', 'mcpd_menu');
 add_action('the_content', 'mcpd_displayForm');
+@define('MCPD_PATH', dirname(__FILE__));
+@define('MCPD_ABS', ABSPATH);
+@define('MCPD_JS', MCPD_PATH . '/js');
 
 function mcpd_init(){
+	
 	register_setting( 'mcpd-options', 'mcpd-accounts' );
 	register_setting( 'mcpd-options', 'mcpd-thanks' );
 	register_setting( 'mcpd-options', 'mcpd-itemname' );
@@ -273,8 +277,7 @@ function mcpd_menu() {
 function mcpd_admin() {
 	global $wpdb;
 	$table_name = $wpdb->prefix . "mcpd_currency";
-	
-	include(ABSPATH. 'wp-content/plugins/multi-currency-donations/options.php');
+	include(MCPD_PATH . '/options.php');
 
 }
 
@@ -285,20 +288,16 @@ function mcpd_validate($results){
 	return $results;
 }
 
-function mcpd_displayForm($content){
-	
+function mcpd_displayForm($content){	
 	$tag = '{mcpdform}';
 	$pos = strpos($content, $tag);
 	if ($pos !== false){
+	
 		ob_start();
-		include(ABSPATH.'wp-content/plugins/multi-currency-donations/form.html.php');
+		include(MCPD_PATH . '/form.html.php');
 		$file = ob_get_clean();
 		$content = str_ireplace($tag, $file, $content);
 	}
-
 	return $content;
-
 }
-
-
 ?>

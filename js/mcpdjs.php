@@ -9,12 +9,9 @@
 	$onetimecheck 	= get_option('mcpd-onetimecheck');
 	$monthlycheck	= get_option('mcpd-monthlycheck');
 	$offsetcheck	= get_option('mcpd-offsetcheck');
-	$contactlink	= get_option('mcpd-contactlink');
-	$update			= get_option('mcpd-update');
-
 ?>
 
-<script src="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-donations/js/boxover.js"></script>
+<script src="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-paypal-donations/js/boxover.js"></script>
 <script language='javascript'>
 function changeBus(input){
  	index = document.getElementById('country').options.selectedIndex;
@@ -113,13 +110,13 @@ function updateAmount(type){
 	var monthly;
 	var onetime;
 	
-	if ((type == 'onetime') && (document.amounts.selonetime.checked == true)){
+	if ((type == 'onetime') && (document.amounts.selonetime.checked == true) && (document.amounts.onetimeamt.value)){
 		//Calculate one time donation
 		onetime = document.amounts.onetimeamt.value;
 		onetime = addSurcharge(onetime);
 		document.getElementById('onetimetotal').innerHTML = onetime;
 		return onetime;
-	} else if ((type == 'monthly') && (document.amounts.selmonthly.checked == true)){
+	} else if ((type == 'monthly') && (document.amounts.selmonthly.checked == true) && (document.amounts.selmonthly.value)){
 		//Calculate monthly total
 		monthly = document.amounts.monthlyamt.value;
 		monthly = addSurcharge(monthly);
