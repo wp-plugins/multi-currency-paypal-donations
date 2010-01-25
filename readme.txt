@@ -28,6 +28,9 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed var_dump problem
+
 = 1.0.1 =
 * Fixed some include problems
 * Fixed bad references to css
