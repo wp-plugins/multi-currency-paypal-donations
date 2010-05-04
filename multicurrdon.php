@@ -300,4 +300,8 @@ function mcpd_displayForm($content){
 	}
 	return $content;
 }
+
+function mcpd_manualDisplay(){
+	include(MCPD_PATH . '/form.html.php');	
+}
 ?>
