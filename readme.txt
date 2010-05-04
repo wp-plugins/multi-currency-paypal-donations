@@ -3,7 +3,7 @@ Contributors: Nick Verwymeren
 Donate link:http://nickandsarajane.com/donate
 Tags: paypal, donation, donate, multi currency
 Requires at least: 2.8
-Tested up to: 2.9.1
+Tested up to: 2.9.2
 Stable tag: 1.0.3
 
 Receive PayPal donations through Wordpress in multiple currencies with the lowest possible fees.
