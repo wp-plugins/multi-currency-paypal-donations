@@ -13,11 +13,19 @@
 
 <script src="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-paypal-donations/js/boxover.js"></script>
 <script language='javascript'>
-function changeBus(input){
+function start() {
+	changeBus();
+	createButton();
+}
+
+window.onload = start;
+
+function changeBus(){
+	var currencyCode;
  	index = document.getElementById('country').options.selectedIndex;
 	switch (index){
 <?php
-$i = 1;
+$i = 0;
 foreach( $options as $currency => $account ){
 	if ($account){
 		$results = $wpdb->get_results("SELECT code, symbol_html FROM ".$table_name." WHERE currency='".$currency."'", ARRAY_A);
@@ -29,6 +37,7 @@ foreach( $options as $currency => $account ){
 		echo "\t\tdocument.getElementById('currsymbol3').innerHTML	= '".$results[0]['symbol_html']."';\n";
 		echo "\t\tdocument.getElementById('currsymbol4').innerHTML	= '".$results[0]['symbol_html']."';\n";
 		echo "\t\tdocument.getElementById('currsymbol5').innerHTML	= '".$results[0]['symbol_html']."';\n";
+		echo "\t\tcurrencyCode 						= '".$results[0]['code']."';\n";
 		echo "\t\tbreak;\n\n";
 		$i++;
 	}
@@ -37,11 +46,11 @@ foreach( $options as $currency => $account ){
 	}
 	//Make The donate Button
 	createButton();
- 	document.getElementById('business').value = input.value;
 }
 
 function loadCurrency(){
-	return document.getElementById('currencyOne').innerHTML;
+	var currency = document.getElementById("currencyOne").innerHTML;
+	return currency;
 }
 
 function loadEmail(){
@@ -86,9 +95,10 @@ function createButton(){
 		} else {
 			ppform = subpart1+subpart2;
 		}
-			document.getElementById('ppform').innerHTML = '';
-			document.getElementById('ppform').innerHTML = ppform;
-		
+
+		document.getElementById('ppform').innerHTML = '';
+		document.getElementById('ppform').innerHTML = ppform;
+	
 		monthly = updateAmount("monthly");
 		return true;
 		
@@ -152,79 +162,49 @@ function updateAmount(type){
 
 function addSurcharge(amt){
 	var amt;
-	
-
 	if (document.surchargeForm.surcharge.checked == true){
 	 	amt = (parseFloat(amt)+0.30)/0.971;
-
 	 	amt = roundNumber(amt, 2);
 	}
 	return amt;	
-
 }
 
 
 
 function roundNumber(number,decimals) {
-
 	var newString;// The new rounded number
-
 	decimals = Number(decimals);
-
 	if (decimals < 1) {
-
 		newString = (Math.round(number)).toString();
-
 	} else {
-
 		var numString = number.toString();
 
 		if (numString.lastIndexOf(".") == -1) {// If there is no decimal point
-
 			numString += ".";// give it one at the end
-
 		}
 
 		var cutoff = numString.lastIndexOf(".") + decimals;// The point at which to truncate the number
-
 		var d1 = Number(numString.substring(cutoff,cutoff+1));// The value of the last decimal place that we'll end up with
-
 		var d2 = Number(numString.substring(cutoff+1,cutoff+2));// The next decimal, after the last one we want
 
 		if (d2 >= 5) {// Do we need to round up at all? If not, the string will just be truncated
-
 			if (d1 == 9 && cutoff > 0) {// If the last digit is 9, find a new cutoff point
-
 				while (cutoff > 0 && (d1 == 9 || isNaN(d1))) {
-
 					if (d1 != ".") {
-
 						cutoff -= 1;
-
 						d1 = Number(numString.substring(cutoff,cutoff+1));
-
 					} else {
-
 						cutoff -= 1;
-
 					}
-
 				}
-
 			}
-
 			d1 += 1;
-
 		} 
-
 		newString = numString.substring(0,cutoff) + d1.toString();
-
 	}
 
 	if (newString.lastIndexOf(".") == -1) {// Do this again, to the new string
-
 		newString += ".";
-
 	}
 
 	var decs = (newString.substring(newString.lastIndexOf(".")+1)).length;
@@ -232,7 +212,6 @@ function roundNumber(number,decimals) {
 	for(var i=0;i<decimals-decs;i++) newString += "0";
 
 	//var newNumber = Number(newString);// make it a number if you like
-
 	return newString;
 
 }

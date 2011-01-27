@@ -3,8 +3,8 @@ Contributors: Nick Verwymeren
 Donate link:http://nickandsarajane.com/donate
 Tags: paypal, donation, donate, multi currency
 Requires at least: 2.8
-Tested up to: 2.9.2
-Stable tag: 1.0.3
+Tested up to: 3.0.4
+Stable tag: 1.1
 
 Receive PayPal donations through Wordpress in multiple currencies with the lowest possible fees.
 
@@ -22,11 +22,14 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 
 4. To use place '{mcpdform}' (without quotes) in your editor where you want the form to show up. The form needs a minimum width of 390px to display properly.
 == Screenshots ==
-1. screenshot-1.png
+1. admin-interface.png
 
-2. screenshot-2.png
+2. donate-form.png
 
 == Changelog ==
+= 1.1 =
+*added the ability to specify a default currency
+
 = 1.0.3 =
 *added mcpd_manualDisplay() function so that you can add the form to a template file
 
