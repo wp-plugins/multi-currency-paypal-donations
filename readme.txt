@@ -22,9 +22,9 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 
 4. To use place '{mcpdform}' (without quotes) in your editor where you want the form to show up. The form needs a minimum width of 390px to display properly.
 == Screenshots ==
-1. admin-interface.png
+1. screenshot-1.png
 
-2. donate-form.png
+2. screenshot-2.png
 
 == Changelog ==
 = 1.1 =
