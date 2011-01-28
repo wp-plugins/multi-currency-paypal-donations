@@ -28,10 +28,10 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 
 == Changelog ==
 = 1.1 =
-*added the ability to specify a default currency
+* Added the ability to specify a default currency
 
 = 1.0.3 =
-*added mcpd_manualDisplay() function so that you can add the form to a template file
+* Added mcpd_manualDisplay() function so that you can add the form to a template file
 
 = 1.0.2 =
 * Fixed var_dump problem
