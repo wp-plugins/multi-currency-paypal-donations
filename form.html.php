@@ -3,6 +3,7 @@
 	$options 		= get_option('mcpd-accounts');
 	$contactlink	= get_option('mcpd-contactlink');
 	$update			= get_option('mcpd-update');
+	$default		= get_option('mcpd-default');
 	require_once(MCPD_JS.'/mcpdjs.php'); 
 ?>
 <link rel="stylesheet" href="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-paypal-donations/style/style.css" media="screen" type='text/css' />
@@ -12,13 +13,13 @@
 	<div class='mcpdstep2'>
 			<div class='nationality'><span style='color:red'>*</span>Select your Currency:
 			<select id='country' onclick="changeBus(this)" onchange="changeBus(this)">
-				<option value=''>---Select---</option>
 	<?php
 	foreach( $options as $currency => $account ){
 			if ($account){
+			($default == $currency) ? $ischecked = 'selected' : $ischecked = '';
 	?>
 	
-		<option value='<?php echo $account ?>'><?php echo $currency ?></option>
+		<option value='<?php echo $account ?>' <?php echo $ischecked ?>><?php echo $currency ?></option>
 	<?php
 			}
 		}

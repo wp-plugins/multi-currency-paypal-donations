@@ -36,6 +36,7 @@ hr{ margin-top: 30px; margin-bottom: 30px;}
 	$monthlycheck	 	= get_option('mcpd-monthlycheck');
 	$offsetcheck	 	= get_option('mcpd-offsetcheck');
 	$contactlink		= get_option('mcpd-contactlink');
+	$default			= get_option('mcpd-default');
 	//$update				= get_option('mcpd-update');
 
 	echo "\n<input type='text' name='mcpd-thanks' size='25' value='".$thanks."' /> \n";
@@ -80,18 +81,49 @@ hr{ margin-top: 30px; margin-bottom: 30px;}
 ?>
 
 <h3>Paypal Email Account</h3>
-<small>Enter the PayPal account (email address) that you wish to associate with that currency. Empty fields will not show up as an available currency on your donation page.</small>
+<small>Enter the PayPal account (email address) that you wish to associate with that currency. Empty fields will not show up as an available currency on your donation page. Make sure you select a default currency.</small>
 <br />
 <?php
 	$results = $wpdb->get_results( "SELECT currency, id FROM " . $table_name . " WHERE paypal_accepts = 1");
 	sort($results);
 
 	//Create currency form
+	echo "<table cellspacing='10'>";
+		echo "<tr>";
+		
+		echo "<td>";
+		echo "<b>Select<br />Default</b>";
+		echo "</td>";
+			
+		echo "<td>";
+		echo "<b>Paypal Email Account</b>";
+		echo "</td>";
+			
+		echo "<td>";
+		echo "<b>Currency</b>";
+		echo "</td>";	
+		
+		echo "</tr>";
+
 	foreach($results as $result){
+		echo "<tr>";
+		echo "<td>";
+		
+		($default == $result->currency) ? $ischecked = 'checked' : $ischecked = '';
+		
+		echo "<input align='right' type='radio' name='mcpd-default' value='".$result->currency."' ".$ischecked.">\n";
+		echo "</td>";
+		echo "<td>";
 		echo "<input type='text' name='mcpd-accounts[".$result->currency."]' size='25' value='".$options[$result->currency]."' /> \n";
+		echo "</td>";
+		echo "<td>";
 		echo "<label for='mcpd-accounts[".$result->currency."]'>".$result->currency."</label>\n";
-		echo "<br /> \n\n";
+		echo "</td>";
+		echo "</tr>";
 	}
+	echo "</table>";
+
+
 ?>
 	<hr />
 	<input type='submit' class='button-primary' value='<?php _e('Save Changes')?>' />

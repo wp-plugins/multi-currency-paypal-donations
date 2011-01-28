@@ -3,10 +3,10 @@
 Plugin Name: Multi Currency PayPal Donation
 Plugin URI: http://www.makesomecode.com/2010/01/07/multi-currency-paypal-donations-wp-plugin
 Description: PayPal charges high fees for cross border transactions. If you are one of the fortunate few that have paypal accounts in multiple currencie then this plugin is for you. It allows you to route different currencies to specific paypal accounts. Even if you don't have multiple paypal accounts this is still a great plugin for accepting donations. Visit the <a href="options-general.php?page=mcpd">configuration page</a> to get started. To use put {mcpdform} in a page or post wherever you want your form to show up.
-Version: 1.0.3
+Version: 1.1
 Author: Nick Verwymeren
 Author URI: http://www.makesomecode.com
-Copyright 2009  Nick Verwymeren  (email: nickv@makesomecode.com)
+Copyright 2011  Nick Verwymeren  (email: nickv@makesomecode.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,6 +43,7 @@ function mcpd_init(){
 	register_setting( 'mcpd-options', 'mcpd-monthlycheck' );
 	register_setting( 'mcpd-options', 'mcpd-offsetcheck' );
 	register_setting( 'mcpd-options', 'mcpd-contactlink' );
+	register_setting( 'mcpd-options', 'mcpd-default' );
 	//register_setting( 'mcpd-options', 'mcpd-update' );
 
 }
