@@ -16,6 +16,7 @@ hr{ margin-top: 30px; margin-bottom: 30px;}
 </style>
 <h2>Multi Currency Paypal Donations</h2>
 <small>Malaysian Ringgit and Brazilian Real are currently not supported by this plugin at this time.</small>
+<a href='http://makesomecode.com/multi-currency-paypal-donations-pro/'><img alt='upgrade to PRO today' src='http://makesomecode.com/resources/upgrade-today.png' /></a>
 <form method="post" action="options.php">
 <hr />
 <h3>Usage Intrsuctions</h3>
@@ -128,5 +129,15 @@ hr{ margin-top: 30px; margin-bottom: 30px;}
 	<hr />
 	<input type='submit' class='button-primary' value='<?php _e('Save Changes')?>' />
 	</form>
-
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7629209408171115";
+/* MCPD Admin Ad */
+google_ad_slot = "4457946558";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 </div>
