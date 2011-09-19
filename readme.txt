@@ -4,7 +4,7 @@ Donate link:http://nickandsarajane.com/donate
 Tags: paypal, donation, donate, multi currency
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 
 Receive PayPal donations through Wordpress in multiple currencies with the lowest possible fees.
 
@@ -27,6 +27,9 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 2. screenshot-2.png
 
 == Changelog ==
+= 2.1.2 =
+* bug fixes
+
 = 2.0 =
 * Much improved admin interface
 * Donations are now tracked using paypals IPN
