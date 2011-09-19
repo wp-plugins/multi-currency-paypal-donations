@@ -3,7 +3,7 @@
 Plugin Name: Multi Currency PayPal Donations
 Plugin URI: http://makesomecode.com/2010/01/07/multi-currency-paypal-donations-wp-plugin/
 Description: PayPal charges high fees for cross border transactions. If you are one of the fortunate few that have paypal accounts in multiple currencies then this plugin is for you. It allows you to route different currencies to specific paypal accounts. Even if you don't have multiple paypal accounts this is still a great plugin for accepting donations. It allows you to accept donations as one time or subscription payments. Visit the <a href="options-general.php?page=mcpd">configuration page</a> to get started. To use put [paypalDonationForm] in a page or post wherever you want your form to show up.
-Version: 2.1
+Version: 2.1.2
 Author: Nick Verwymeren
 Author URI: http://www.makesomecode.com
 Copyright 2011 Multi Currency PayPal Donations - Nick Verwymeren  (email: nickv@makesomecode.com)
@@ -16,7 +16,7 @@ add_action('admin_menu', 'mcpd_menu');
 add_shortcode( 'paypalDonationForm', 'mcpd_shortcode' );
 add_action('the_content', 'mcpd_displayForm');
 add_filter('plugin_action_links', 'our_plugin_action_links', 10, 2);
-register_activation_hook(__FILE__,'mcpd_update_db_check');
+add_action('plugins_loaded', 'mcpd_update_db_check');
 @define('MCPD_PATH', dirname(__FILE__));
 @define('MCPD_ABS', ABSPATH);
 @define('MCPD_JS', MCPD_PATH . '/js');
@@ -43,7 +43,7 @@ function mcpd_init(){
 	//register_setting( 'mcpd-options', 'mcpd-update' );
 }
 
-function mcpd_install () {
+function mcpd_install() {
 	global $wpdb;
 	global $mcpd_db_version;
 	
@@ -67,7 +67,7 @@ function mcpd_install () {
 	
 	dbDelta($sql);
 	
-	  $ipn_sql = "CREATE TABLE " . $ipn_table_name . " (
+	$ipn_sql = "CREATE TABLE " . $ipn_table_name . " (
 	uid bigint(20) NOT NULL auto_increment,
 	date timestamp(14) NOT NULL,
 	item_name varchar(130) NOT NULL default 'joi',
@@ -159,6 +159,7 @@ function mcpd_update_db_check() {
 	
 	switch (get_option('mcpd_db_version')) {
     	case 1.1:
+    		mcpd_install();
 	        //Update our two currencies
 	        $wpdb->update( $table_name, array( 'paypal_accepts' => 1 ), array( 'code' => 'MYR' ), array( '%d' ), array( '%s' ) );
 	        $wpdb->update( $table_name, array( 'paypal_accepts' => 1 ), array( 'code' => 'BRL' ), array( '%d' ), array( '%s' ) );
@@ -169,6 +170,7 @@ function mcpd_update_db_check() {
     		break;
     		
    		default:
+   			mcpd_install();
    			mcpd_install_data();
    			break;
     }
