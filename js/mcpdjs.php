@@ -11,7 +11,7 @@
 	$offsetcheck	= get_option('mcpd-offsetcheck');
 ?>
 
-<script src="<?php bloginfo('wpurl') ?>/wp-content/plugins/multi-currency-paypal-donations/js/boxover.js"></script>
+<script src="<?php plugins_url('/js/boxover.js') ?>"></script>
 <script language='javascript'>
 function start() {
 	changeBus();
@@ -86,7 +86,7 @@ function createButton(){
 	if (((document.amounts.selmonthly.checked == true) && (document.amounts.selonetime.checked == true)) || ((document.amounts.selmonthly.checked == true) && (document.amounts.selonetime.checked == false))){
 			//Create a subscription button with a trail payment of one time donation value
 			//Find out if one time donation has been selected. If so add it to the subscription payment
-			subpart1 = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input name="cmd" type="hidden" value="_xclick-subscriptions" /><input id="business" name="business" type="hidden" value="'+loadEmail()+'" /><input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /><input id="currency_code" name="currency_code" type="hidden" value="'+loadCurrency()+'" /><input name="no_shipping" type="hidden" value="1" /><input name="return" type="hidden" value="<?php echo $thanks; ?>" /><input name="cancel_return" type="hidden" value="<?php echo $thanks; ?>?error=cancel" /><input name="no_note" type="hidden" value="1" /><input name="lc" type="hidden" value="CA" /><input name="bn" type="hidden" value="PP-SubscriptionsBF" />';
+			subpart1 = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input name="notify_url" type="hidden" value="<?php echo get_bloginfo('wpurl').'/mcpd/ipn'; ?>" /><input name="cmd" type="hidden" value="_xclick-subscriptions" /><input id="business" name="business" type="hidden" value="'+loadEmail()+'" /><input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /><input name="item_number" type="hidden" value="aio-donation" /><input id="currency_code" name="currency_code" type="hidden" value="'+loadCurrency()+'" /><input name="no_shipping" type="hidden" value="1" /><input name="return" type="hidden" value="<?php echo $thanks; ?>" /><input name="cancel_return" type="hidden" value="<?php echo $thanks; ?>?error=cancel" /><input name="no_note" type="hidden" value="1" /><input name="lc" type="hidden" value="CA" /><input name="bn" type="hidden" value="PP-SubscriptionsBF" />';
 			subpart2 = '<input name="p3" type="hidden" value="1" /><input name="t3" type="hidden" value="M" /><input name="src" type="hidden" value="1" /><input name="sra" type="hidden" value="1" /><input id="a3" name="a3" size="6" type="hidden" value="'+updateAmount("monthly")+'" style="padding:5px;font-size:20px;font-weight:900;" /><input type="submit" class="mcpddonatenow" name="submit" value="Donate Now" alt=""></form>';
 
 		if (document.amounts.selonetime.checked == true){
@@ -104,7 +104,7 @@ function createButton(){
 		
 	} else if ((document.amounts.selmonthly.checked == false) && (document.amounts.selonetime.checked == true)){
 		//Make a buy it now button for a one time donation
-		buynow = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input name="cmd" type="hidden" value="_donations" /><input id="business" name="business" type="hidden" value="'+loadEmail()+'" /><input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /><input id="amount" name="amount" size="6" type="hidden" value="'+updateAmount("onetime")+'" style="padding:5px;font-size:20px;font-weight:900;" /><input id="currency_code1" name="currency_code" type="hidden" value="'+loadCurrency()+'" /><input name="return" type="hidden" value="<?php echo $thanks; ?>" /><input type="submit" class="mcpddonatenow" name="submit" value="Donate Now" alt=""></form>';
+		buynow = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input name="notify_url" type="hidden" value="<?php echo get_bloginfo('wpurl').'/mcpd/ipn'; ?>" /><input name="cmd" type="hidden" value="_donations" /><input id="business" name="business" type="hidden" value="'+loadEmail()+'" /><input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /><input name="item_number" type="hidden" value="aio-donation" /><input id="amount" name="amount" size="6" type="hidden" value="'+updateAmount("onetime")+'" style="padding:5px;font-size:20px;font-weight:900;" /><input id="currency_code1" name="currency_code" type="hidden" value="'+loadCurrency()+'" /><input name="return" type="hidden" value="<?php echo $thanks; ?>" /><input type="submit" class="mcpddonatenow" name="submit" value="Donate Now" alt=""></form>';
 		document.getElementById('ppform').innerHTML = '';
 		document.getElementById('ppform').innerHTML = buynow;
 		onetime = updateAmount("onetime");
