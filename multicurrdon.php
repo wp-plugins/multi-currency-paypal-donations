@@ -43,7 +43,7 @@ function mcpd_init(){
 	//register_setting( 'mcpd-options', 'mcpd-update' );
 }
 
-function mcpd_install () {
+function mcpd_install() {
 	global $wpdb;
 	global $mcpd_db_version;
 	
@@ -67,7 +67,7 @@ function mcpd_install () {
 	
 	dbDelta($sql);
 	
-	  $ipn_sql = "CREATE TABLE " . $ipn_table_name . " (
+	$ipn_sql = "CREATE TABLE " . $ipn_table_name . " (
 	uid bigint(20) NOT NULL auto_increment,
 	date timestamp(14) NOT NULL,
 	item_name varchar(130) NOT NULL default 'joi',
@@ -159,6 +159,7 @@ function mcpd_update_db_check() {
 	
 	switch (get_option('mcpd_db_version')) {
     	case 1.1:
+    		mcpd_install();
 	        //Update our two currencies
 	        $wpdb->update( $table_name, array( 'paypal_accepts' => 1 ), array( 'code' => 'MYR' ), array( '%d' ), array( '%s' ) );
 	        $wpdb->update( $table_name, array( 'paypal_accepts' => 1 ), array( 'code' => 'BRL' ), array( '%d' ), array( '%s' ) );
@@ -169,6 +170,7 @@ function mcpd_update_db_check() {
     		break;
     		
    		default:
+   			mcpd_install();
    			mcpd_install_data();
    			break;
     }
