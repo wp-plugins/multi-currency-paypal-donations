@@ -1,17 +1,19 @@
 <?php 
-	$options 		= get_option('mcpd-accounts');
-	$contactlink	= get_option('mcpd-contactlink');
-	$styles			= get_option('mcpd-styles');
-	$default		= get_option('mcpd-default');
-	require_once(MCPD_JS.'/mcpdjs.php');
+wp_enqueue_style( 'opentipcss', plugins_url('multi-currency-paypal-donations/style/opentip.css') );
+wp_enqueue_script( 'opentipjs', plugins_url('multi-currency-paypal-donations/js/opentip-native.min.js') );
+$options 		= get_option('mcpd-accounts');
+$contactlink	= get_option('mcpd-contactlink');
+$styles			= get_option('mcpd-styles');
+$default		= get_option('mcpd-default');
+require_once(MCPD_JS.'/mcpdjs.php');
 ?>
-<link rel="stylesheet" href="<?php echo plugins_url('style/style.css', __FILE__) ?>" media="screen" type='text/css' />
+<link rel="stylesheet" href="<?php echo plugins_url('multi-currency-paypal-donations/style/style.css') ?>" media="screen" type='text/css' />
 <style type='text/css'>
 .mcpdleftcol{ background-color: <?php echo $styles['backgroundColor'] ?> }
 .nationality{ background-color: <?php echo $styles['topBackgroundColor'] ?> }
 .mcpdcontent { color:<?php echo $styles['text'] ?> }
 
-.mcpddonatenow {
+input.mcpddonatenow {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, <?php echo $styles['topGradient'] ?>), color-stop(1, <?php echo $styles['bottomGradient'] ?>) );
 	background:-moz-linear-gradient( center top, <?php echo $styles['topGradient'] ?> 5%, <?php echo $styles['bottomGradient'] ?> 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='<?php echo $styles['topGradient'] ?>', endColorstr='<?php echo $styles['bottomGradient'] ?>');
@@ -28,12 +30,14 @@
 	padding:12px 24px;
 	margin-left: 10px;
 	text-decoration:none;
-}.mcpddonatenow:hover {
+}
+input.mcpddonatenow:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, <?php echo $styles['bottomGradient'] ?>), color-stop(1, <?php echo $styles['topGradient'] ?>) );
 	background:-moz-linear-gradient( center top, <?php echo $styles['bottomGradient'] ?> 5%, <?php echo $styles['topGradient'] ?> 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='<?php echo $styles['bottomGradient'] ?>', endColorstr='<?php echo $styles['topGradient'] ?>');
 	background-color:<?php echo $styles['bottomGradient'] ?>;
-}.mcpddonatenow:active {
+}
+input.mcpddonatenow:active {
 	position:relative;
 	top:1px;
 }
@@ -81,19 +85,19 @@
 			<div id='mcpdmonthly'>
 				<form name='amounts'>
 					<h3 class='top'>Monthly Donation</h3>
-					<input name='selmonthly' type="checkbox" <?php if($monthlycheck == 'on') echo 'checked'; ?> onclick='createButton()' />
+					<input name='selmonthly' type="checkbox" <?php if(get_option('mcpd-monthlycheck') == 'on') echo 'checked'; ?> onclick='createButton()' />
 					<span id='currsymbol1'>$</span><input type='input' size="6" name='monthlyamt' value='<?php echo $monthlydefault ?>' onkeyup='createButton()' style='padding:5px;font-size:20px;font-weight:900;' />
 					<span id='currencyMon'></span><span class='permonth'>/month</span>
 					
 				<h3>One Time Donation</h3>
-					<input name='selonetime' type="checkbox" <?php if($onetimecheck == 'on') echo 'checked'; ?> onclick='createButton()' />
+					<input name='selonetime' type="checkbox" <?php if(get_option('mcpd-onetimecheck') == 'on') echo 'checked'; ?> onclick='createButton()' />
 					<span id='currsymbol2'>$</span><input type='input' size="6" name='onetimeamt' value='<?php echo $onetimedefault ?>' onkeyup='createButton()' style='padding:5px;font-size:20px;font-weight:900;' />
 					<span id='currencyOne'></span>
 				</form>
 				<form name='surchargeForm'>
-					<input name='surcharge' type="checkbox" <?php if($offsetcheck == 'on') echo 'checked'; ?> onclick='createButton();'><label for='surcharge'>Offset credit card surcharge<span style="cursor: help; color: #2e2d2d;" id="helpTool" title='Credit cards charge us a percentage for their use. Clicking this box will ensure your donation above will be received in full' > <u>?</u></span></label>
+					<input name='surcharge' type="checkbox" <?php if(get_option('mcpd-offsetcheck') == 'on') echo 'checked'; ?> onclick='createButton();'><label for='surcharge'>Offset credit card surcharge<span style="cursor: help" data-ot='Credit cards charge us a percentage for their use. Clicking this box will ensure your donation above will be received in full' > <u>?</u></span></label>
 				</form>
-	
+
 			</div>
 			<div class='mcpdsubtotal'>
 				<p><b>Subtotal</b></p>
