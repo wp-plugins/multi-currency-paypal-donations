@@ -86,7 +86,6 @@ function createButton(){
     //Create a subscription button with a trail payment of one time donation value
     //Find out if one time donation has been selected. If so add it to the subscription payment
     subpart1 = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"> \
-                <input name="notify_url" type="hidden" value="<?php echo get_bloginfo('wpurl').'/mcpd/ipn'; ?>" /> \
                 <input name="cmd" type="hidden" value="_xclick-subscriptions" /> \
                 <input id="business" name="business" type="hidden" value="'+loadEmail()+'" /> \
                 <input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /> \
@@ -123,7 +122,6 @@ function createButton(){
   } else if ((document.amounts.selmonthly.checked == false) && (document.amounts.selonetime.checked == true)){
     //Make a buy it now button for a one time donation
     buynow = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"> \
-              <input name="notify_url" type="hidden" value="<?php echo get_bloginfo('wpurl').'/mcpd/ipn'; ?>" /> \
               <input name="cmd" type="hidden" value="_donations" /> \
               <input id="business" name="business" type="hidden" value="'+loadEmail()+'" /> \
               <input name="item_name" type="hidden" value="<?php echo $itemname; ?>" /> \
