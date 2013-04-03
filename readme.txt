@@ -3,8 +3,8 @@ Contributors: Nick Verwymeren
 Donate link:http://nickandsarajane.com/donate
 Tags: paypal, donation, donate, multi currency
 Requires at least: 2.8
-Tested up to: 3.2.1
-Stable tag: 2.1.2
+Tested up to: 3.5.1
+Stable tag: 2.2.2
 
 Receive PayPal donations through Wordpress in multiple currencies with the lowest possible fees.
 
@@ -20,13 +20,26 @@ Receive PayPal donations through Wordpress in multiple currencies with the lowes
 
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
-4. To use place '{mcpdform}' (without quotes) in your editor where you want the form to show up. The form needs a minimum width of 390px to display properly.
+4. To use place [paypalDonationForm] in your editor where you want the form to show up. The form needs a minimum width of 350px to display properly.
 == Screenshots ==
 1. screenshot-1.png
 
 2. screenshot-2.png
 
 == Changelog ==
+= 2.2.2 =
+* Removed IPN from button code
+
+= 2.2.1 =
+* Removed boxover.js
+
+= 2.2 =
+* Removed PayPal IPN functionality (wasn't working anyways)
+* Fixed problem with donate buttons styles not working
+* Changed help hover to opentip
+* Fixed Monthly and One-Time check option not saving properly
+* Fixed a problem when nothing is in the monthly box it showed NaN
+
 = 2.1.2 =
 * bug fixes
 
