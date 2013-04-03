@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?php echo plugins_url('style/style.css', __FILE__) ?>" media="screen" type='text/css' />
-<script type='text/javascript' src='<?php echo plugins_url("/js/jquery.js", __FILE__); ?>' ></script> 
 <?php
+  wp_enqueue_script('jquery');
 	$options 			= get_option('mcpd-accounts');
 	$thanks 			= get_option('mcpd-thanks');
 	$itemname 			= get_option('mcpd-itemname');
@@ -99,14 +99,6 @@ button.colorPallet { width: 18px; height: 18px; background-color: #BEEF77; borde
 		</div>	
 	</div>
 </div>	
-
-<?php
-	//Check to see if defaults have been set
-	($monthlycheck == 'on') ? $monthlycheck = 'checked' : $monthlycheck = '';
-	($onetimecheck == 'on') ? $onetimecheck = 'checked' : $onetimecheck = '';
-	($offsetcheck == 'on') ? $offsetcheck = 'checked' : $offsetcheck = '';
-?>	
-
 <div class="rm_section">
 	<div class="rm_title"><?php echo "<h3><img src=\"" . plugins_url('/images/trans.png', __FILE__) . "\" class=\"inactive\" width=\"16px\" height=\"16px\" alt=\"\">" . __('Default Options', 'mcpdpro'). "</h3>" ?>
 	<span class="submit"><input name="save<?php echo $i; ?>" type="submit" value="Save changes" /></span>
@@ -114,7 +106,7 @@ button.colorPallet { width: 18px; height: 18px; background-color: #BEEF77; borde
 	<div class="rm_opts">	
 		<div class="rm_input rm_checkbox">  
 		    <label for="mcpd-monthlycheck"><?php _e('Monthly Checked', 'mcpdpro') ?></label>  
-			<input type="checkbox" name="mcpd-monthlycheck" id="mcpd-monthlycheck" value='<?php echo $monthlycheck ?>' <?php echo $checked; ?> />  
+			<input type="checkbox" name="mcpd-monthlycheck" id="mcpd-monthlycheck" value='on' <?php if(get_option('mcpd-monthlycheck') == 'on') echo 'checked'; ?> />  
 		 	 <small><?php _e('Is the monthly box checked by default?') ?></small>
 		    <div class="clearfix"></div>
 		</div>
@@ -128,7 +120,7 @@ button.colorPallet { width: 18px; height: 18px; background-color: #BEEF77; borde
 		
 		<div class="rm_input rm_checkbox">  
 		    <label for="mcpd-onetimecheck"><?php _e('One-Time Checked', 'mcpdpro') ?></label>  
-			<input type="checkbox" name="mcpd-onetimecheck" id="mcpd-onetimecheck" value='<?php echo $onetimecheck ?>' <?php echo $checked; ?> />  
+			<input type="checkbox" name="mcpd-onetimecheck" id="mcpd-onetimecheck" value='on' <?php if(get_option('mcpd-onetimecheck') == 'on') echo 'checked'; ?> />  
 		 	<small><?php _e('Is the one-time donation box checked by default?') ?></small>
 		    <div class="clearfix"></div>  
 		</div>
@@ -139,7 +131,13 @@ button.colorPallet { width: 18px; height: 18px; background-color: #BEEF77; borde
 		 	<small><?php _e('Amount to pre-fill the one-time donation with.') ?></small>
 		 	<div class="clearfix"></div>  
 		</div>
-	</div>
+  <div class="rm_input rm_checkbox">  
+    <label for="mcpd-offsetcheck"><?php _e('Offset Charges Checked', 'mcpdpro') ?></label>  
+    <input type="checkbox" name="mcpd-offsetcheck" id="mcpd-offsetcheck" value='on' <?php if(get_option('mcpd-offsetcheck') == 'on') echo 'checked'; ?> />  
+    <small><?php _e('Should the offset charges box be checked by default?') ?></small>
+    <div class="clearfix"></div>  
+  </div>
+  </div>
 </div>
 
 <div class="rm_section">

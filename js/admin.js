@@ -49,8 +49,10 @@ function setPallet(topBack, mainBack, text, topGrad, botGrad, border, buttonText
 	position:relative; \
 	top:1px; \
 }";
-	$('style#donateButton').remove();
-	$('head').append('<style id="donateButton" type="text/css">' + buttonStyles + '</style>');
+  jQuery(document).ready(function($) {
+	  $('style#donateButton').remove();
+	  $('head').append('<style id="donateButton" type="text/css">' + buttonStyles + '</style>');
+  });
 }
 
 function updatePallet(){
